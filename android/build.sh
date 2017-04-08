@@ -26,7 +26,7 @@ create_directory_if_not_found() {
 	fi
 }
 
-USER_WEBRTC_URL="git@github.com:notedit/dotEngine-webrtc-mirror.git"
+USER_WEBRTC_URL="git@github.com:notedit/webrtc-mirror.git"
 DEFAULT_WEBRTC_URL="https://chromium.googlesource.com/external/webrtc"
 DEPOT_TOOLS="$PROJECT_ROOT/depot_tools"
 WEBRTC_ROOT="$PROJECT_ROOT/webrtc"
@@ -210,7 +210,7 @@ get_webrtc() {
 }
 
 # Updates webrtc and builds apprtc
-build_apprtc() {
+build_webrtc() {
     export WEBRTC_ARCH=arm
     prepare_gyp_defines &&
     execute_build
