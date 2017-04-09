@@ -34,7 +34,7 @@ create_directory_if_not_found "$WEBRTC_ROOT"
 BUILD="$WEBRTC_ROOT/libjingle_peerconnection_builds"
 WEBRTC_TARGET="libjingle_peerconnection_so"
 
-WEBRTC_TARGET_JAR="libjingle_peerconnection_java"
+WEBRTC_TARGET_JAR="libwebrtc"
 
 ANDROID_TOOLCHAINS="$WEBRTC_ROOT/src/third_party/android_tools/ndk/toolchains"
 
@@ -44,19 +44,18 @@ WEBRTC_JAR="$WEBRTC_ROOT/src/webrtc/sdk/android/api/org/webrtc"
 
 WEBRTC_JAR_VOICE_ENGINE="$WEBRTC_ROOT/src/webrtc/modules/audio_device/android/java/src/org/webrtc/voiceengine"
 
+WEBRTC_JAR_BASE="$WEBRTC_ROOT/src/webrtc/base/java/src/org/webrtc/*"
 
 
 exec_ninja() {
   echo "Running ninja"
   ninja -C $1  $WEBRTC_TARGET
-  ninja -C $1  $WEBRTC_TARGET_JAR
 }
 
 # Installs the required dependencies on the machine
 install_dependencies() {
-    sudo apt-get -y install wget git gnupg flex bison gperf build-essential zip curl subversion pkg-config libglib2.0-dev libgtk2.0-dev libxtst-dev libxss-dev libpci-dev libdbus-1-dev libgconf2-dev libgnome-keyring-dev libnss3-dev
     #Download the latest script to install the android dependencies for ubuntu
-    curl -o install-build-deps-android.sh https://src.chromium.org/svn/trunk/src/build/install-build-deps-android.sh
+    curl -o install-build-deps-android.sh https://cs.chromium.org/chromium/src/build/install-build-deps.sh
     #use bash (not dash which is default) to run the script
     sudo /bin/bash ./install-build-deps-android.sh
     #delete the file we just downloaded... not needed anymore
@@ -189,6 +188,7 @@ execute_build() {
 
         cp -rf $WEBRTC_JAR  "$TARGET_DIR/libs/"
         cp -rf $WEBRTC_JAR_VOICE_ENGINE "$TARGET_DIR/libs/"
+        cp -rf $WEBRTC_JAR_BASE "$TARGET_DIR/libs/"
 
         cp -p "$WEBRTC_ROOT/src/$ARCH_OUT/$BUILD_TYPE/"*.so "$ARCH_JNI/"
 
