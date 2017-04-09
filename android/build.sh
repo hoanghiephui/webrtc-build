@@ -40,7 +40,7 @@ ANDROID_TOOLCHAINS="$WEBRTC_ROOT/src/third_party/android_tools/ndk/toolchains"
 
 
 
-WEBRTC_JAR="$WEBRTC_ROOT/src/webrtc/api/android/java/src/org/webrtc"
+WEBRTC_JAR="$WEBRTC_ROOT/src/webrtc/sdk/android/api/org/webrtc"
 
 WEBRTC_JAR_VOICE_ENGINE="$WEBRTC_ROOT/src/webrtc/modules/audio_device/android/java/src/org/webrtc/voiceengine"
 
