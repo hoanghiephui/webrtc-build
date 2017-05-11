@@ -55,7 +55,7 @@ exec_ninja() {
 # Installs the required dependencies on the machine
 install_dependencies() {
     #Download the latest script to install the android dependencies for ubuntu
-    curl -o install-build-deps-android.sh https://cs.chromium.org/chromium/src/build/install-build-deps.sh
+    curl https://chromium.googlesource.com/chromium/src/+/master/build/install-build-deps-android.sh?format=TEXT | base64 -d > install-build-deps-android.sh
     #use bash (not dash which is default) to run the script
     sudo /bin/bash ./install-build-deps-android.sh
     #delete the file we just downloaded... not needed anymore
